@@ -5,9 +5,9 @@ import (
 )
 
 type Resources struct {
-	Cpus int `json: "cpus"`
-	Disk int `json: "disk"`
-	Mem  int `json: "mem"`
+	Cpus float64 `json: "cpus"`
+	Disk float64 `json: "disk"`
+	Mem  float64 `json: "mem"`
 }
 type Slave struct {
 	Id            string                 `json: "id"`

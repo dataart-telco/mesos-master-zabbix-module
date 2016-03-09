@@ -29,10 +29,10 @@ type ZabbixAgent struct {
 type Segment []Slave
 
 func (self Segment) GetResources() (Resources, Resources) {
-	cpuAll := 0
-	memAll := 0
-	cpuUsed := 0
-	memUsed := 0
+	cpuAll := 0.0
+	memAll := 0.0
+	cpuUsed := 0.0
+	memUsed := 0.0
 	for _, n := range self {
 		cpuAll += n.Resources.Cpus
 		memAll += n.Resources.Mem
@@ -151,7 +151,7 @@ func (self *ZabbixAgent) SegmentUsage(request *g2z.AgentRequest) (float64, float
 		return 0, 0, err
 	}
 	all, used := segment.GetResources()
-	return float64(used.Cpus)/float64(all.Cpus), float64(used.Mem)/float64(all.Mem), nil
+	return used.Cpus/all.Cpus, used.Mem/all.Mem, nil
 }
 
 func (self *ZabbixAgent) SegmentFree(request *g2z.AgentRequest) (float64, float64, error) {
@@ -161,7 +161,7 @@ func (self *ZabbixAgent) SegmentFree(request *g2z.AgentRequest) (float64, float6
 		return 0, 0, err
 	}
 	all, used := segment.GetResources()
-	return float64(all.Cpus - used.Cpus)/float64(all.Cpus), float64(all.Mem - used.Mem)/float64(all.Mem), nil
+	return (all.Cpus - used.Cpus)/all.Cpus, (all.Mem - used.Mem)/all.Mem, nil
 }
 
 var zabbixAgent = &ZabbixAgent{}
