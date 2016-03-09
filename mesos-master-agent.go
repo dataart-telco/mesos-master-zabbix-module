@@ -5,21 +5,21 @@ import (
 )
 
 type Resources struct {
-	Cpus float64 `json: "cpus"`
-	Disk float64 `json: "disk"`
-	Mem  float64 `json: "mem"`
+	Cpus float64 `json:"cpus"`
+	Disk float64 `json:"disk"`
+	Mem  float64 `json:"mem"`
 }
 type Slave struct {
-	Id            string                 `json: "id"`
-	Hostname      string                 `json: "hostname"`
-	Active        bool                   `json: "active"`
-	Attributes    map[string]interface{} `json: "attributes"`
-	Resources     Resources              `json: "resources"`
-	UsedResources Resources              `json: "used_resources"`
+	Id            string                 `json:"id"`
+	Hostname      string                 `json:"hostname"`
+	Active        bool                   `json:"active"`
+	Attributes    map[string]interface{} `json:"attributes"`
+	Resources     Resources              `json:"resources"`
+	UsedResources Resources              `json:"used_resources"`
 }
 
 type MasterState struct {
-	Slaves []Slave `json: "slaves"`
+	Slaves []Slave `json:"slaves"`
 }
 
 type Monitor struct {
